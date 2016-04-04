@@ -6,7 +6,7 @@ var textapi = new AYLIENTextAPI({
   application_id: "80a73a4d",
   application_key: "304653a77829a174564d0e3495c3bb9b"
 });
-
+var google = require('google');
 var session = require("express-session");
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
@@ -26,6 +26,9 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+google.resultsPerPage = 25;
+var nextCounter = 0;
+
 var validUrl = function (req, res, next){
    if (req.session.name){
        next();
@@ -37,7 +40,8 @@ var validUrl = function (req, res, next){
 var finalsentences = "placeholder";
 
 app.get('/', function(req, res){
-   
+   req.session.name = null;
+   req.session.password = null;
    res.render("index.html");
 });
 
@@ -79,6 +83,20 @@ app.get('/home', validUrl, function(req, res){
  
    }
   });
+
+  var rep = [];
+  textapi.extract({
+    url: req.session.name,
+   best_image: false
+}, function(error, response) {
+  if (error === null) {
+    console.log(response);
+    rep = response;
+  }
+  
+});
+
+
   setTimeout(function() {
   console.log(sentences);
   console.log("theses are final sentences");
@@ -86,7 +104,32 @@ app.get('/home', validUrl, function(req, res){
   finalsentences = array.toString(); 
   console.log (finalsentences);
   console.log("made it to final sentences");
-  res.render("display.html", {username: finalsentences});  
+  var title = rep.title;
+  var publish = rep.publishDate;
+  var author = rep.author;
+  if (title == "") { title = "N/A"};
+  if (publish == "") { publish = "N/A"};
+  if (author == "") { author = "N/A"};
+/*
+  google(author, function (err, res){
+  if (err) console.error(err)
+
+  for (var i = 0; i < res.links.length; ++i) {
+    var link = res.links[i];
+    console.log(link.title + ' - ' + link.href)
+    console.log(link.description + "\n")
+  }
+
+  if (nextCounter < 4) {
+    nextCounter += 1
+    if (res.next) res.next()
+   }
+  })
+*/
+  req.session.name = "";
+  req.session.password = ""; 
+  res.render("display.html", {username: finalsentences, title: title, 
+  publish: publish, author: author});  
   }, 3000);
 });
 

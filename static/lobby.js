@@ -5,7 +5,7 @@ socket.emit("newUser", username);
 var lobbyTable = $("#lobbyTable");
 socket.on("update", function(sentences){
     lobbyTable.html("");
-    lobbyTable.append(sentences);
+    //lobbyTable.append(sentences);
     console.log(sentences);
 });
 
