@@ -54,9 +54,20 @@ http://localhost:8023/
 
 (copy and paste the url or type it into the address bar once the server is running)
 
-![Alt text](/static/images/Preview1.png?raw=true "Homepage")
-![Alt text](/static/images/Preview2.png?raw=true "Summarization")
+Give the server some time to load the responsive voice. Also make sure your speakers and sound are on.
 
+
+![Alt text](/static/images/Preview1.png?raw=true "Homepage")
+Homepage- Responsive Voice AI begins to speak
+
+![Alt text](/static/images/Preview2.png?raw=true "Homepage")
+Click on the URL text field
+
+![Alt text](/static/images/Preview3.png?raw=true "Homepage")
+After entering a valid url and sentence length, then press Submit.
+
+![Alt text](/static/images/Preview4.png?raw=true "Summarization")
+You are then presented with the summarization as well as additional information. Press Back (at the top left) to go back to the homepage.
 
 ## MindSumo CapitalOne Explanation
 
