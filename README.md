@@ -3,6 +3,8 @@
 * node.js modules
 * Keep your speaker on (especially when you load the app). Also the app will take some time to load as it will need to create the responsive voice.
 
+### Submission was accepted into the program. Was given a spot in the Capital One Software Engineering Summit.
+
 ### Installation:
 
 Download Node.js from https://nodejs.org/en/download/ or https://nodejs.org/en/
